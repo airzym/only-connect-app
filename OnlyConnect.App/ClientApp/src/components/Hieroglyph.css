@@ -1,0 +1,17 @@
+.card-hieroglyph {
+    height: 200px;
+    background-color: #0d3763;
+    box-shadow: 0 0 2em 1px rgba(0, 0, 0, 0.47) inset;
+    cursor: pointer;
+}
+.card-hieroglyph.disabled {
+    background-color: #b3d8ff;
+}
+
+.hieroglyph {
+    height: 100%;
+    margin: auto;
+    padding: 1em;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}

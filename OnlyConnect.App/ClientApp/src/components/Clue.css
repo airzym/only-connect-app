@@ -1,0 +1,33 @@
+.card-points {
+    height: 40px;
+    background-color: #0d3763;
+    box-shadow: 0 0 2em 1px rgba(0, 0, 0, 0.47) inset;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 0;
+    display: flex;
+    color: #ffffff;
+}
+
+.card-points-hidden {
+    display: flex;
+    height: 40px;
+    margin: 0.5em 0;
+}
+
+.card-clue {
+    height: 200px;
+    background-color: #b3d8ff;
+    box-shadow: 0 0 2em 1px rgba(0, 0, 0, 0.47) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hieroglyph {
+    height: 100%;
+    margin: auto;
+    padding: 1em;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
