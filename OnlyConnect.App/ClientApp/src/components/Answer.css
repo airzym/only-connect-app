@@ -1,0 +1,10 @@
+.card-answer {
+    height: 75px;
+    background-color: #0d3763;
+    box-shadow: 0 0 2em 1px rgba(0, 0, 0, 0.47) inset;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 0;
+    display: flex;
+    color: #ffffff;
+}

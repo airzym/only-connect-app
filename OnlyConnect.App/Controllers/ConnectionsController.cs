@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using OnlyConnect.App.Data;
 
 namespace OnlyConnect.App.Controllers;
 
@@ -6,55 +7,52 @@ namespace OnlyConnect.App.Controllers;
 [Route("api/[controller]")]
 public class ConnectionsController : ControllerBase
 {
-    private readonly Connections _connections = new()
+    private readonly IConnectionsRepository _connectionsRepository;
+
+    public ConnectionsController(IConnectionsRepository connectionsRepository)
     {
-        EyeOfHorus = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = false, },
-        HornedViper = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = true, },
-        Lion = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = false, },
-        TwistedFlax = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = true, },
-        TwoReeds = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = false, },
-        Water = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", Selected = false, },
-    };
+        _connectionsRepository = connectionsRepository;
+    }
     
     [HttpGet]
     public Connections Get()
     {
-        return _connections;
+        return _connectionsRepository.Get();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> EyeOfHorus()
     {
-        return _connections.EyeOfHorus;
+        return _connectionsRepository.EyeOfHorus();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> HornedViper()
     {
-        return _connections.HornedViper;
+        return _connectionsRepository.HornedViper();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> Lion()
     {
-        return _connections.Lion;
+        return _connectionsRepository.Lion();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> TwistedFlax()
     {
-        return _connections.TwistedFlax;
+        return _connectionsRepository.TwistedFlax();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> TwoReeds()
     {
-        return _connections.TwoReeds;
+        return _connectionsRepository.TwoReeds();
     }
     
     [HttpGet("[action]")]
     public IConnection<string> Water()
     {
-        return _connections.Water;
+        return _connectionsRepository.Water();
     }
 }

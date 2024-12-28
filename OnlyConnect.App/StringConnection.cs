@@ -18,7 +18,7 @@ public interface IConnection<T>
     T ClueThree { get; }
     T ClueFour { get; }
     string Answer { get; }
-    bool Selected { get; }
+    bool Selected { get; set; }
 }
 
 public class StringConnection : IConnection<string>
@@ -28,5 +28,5 @@ public class StringConnection : IConnection<string>
     public required string ClueThree { get; set; }
     public required string ClueFour { get; set; }
     public required string Answer { get; set; }
-    public  required bool Selected { get; set; }
+    public bool Selected { get; set; } = false;
 }

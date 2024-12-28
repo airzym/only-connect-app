@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Row} from "reactstrap";
+import {Breadcrumb, BreadcrumbItem, Col, Row} from "reactstrap";
 import {Hieroglyph} from "./Hieroglyph";
 
 export class Connections extends Component {
@@ -38,6 +38,11 @@ export class Connections extends Component {
 
         return (
             <div>
+                <Breadcrumb>
+                    <BreadcrumbItem active>
+                        Connections
+                    </BreadcrumbItem>
+                </Breadcrumb>
                 <h1 id="tableLabel">Connections</h1>
                 <p>What connects all four clues?</p>
                 {contents}

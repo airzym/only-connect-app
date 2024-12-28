@@ -1,8 +1,11 @@
+using OnlyConnect.App.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IConnectionsRepository, ConnectionsRepository>();
 
 var app = builder.Build();
 
