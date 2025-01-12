@@ -1,23 +1,13 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Connections } from "./components/Connections";
-import {Connection} from "./components/Connection";
-import {NewGame} from "./components/NewGame";
-import {CoinToss} from "./components/CoinToss";
+import { Connection } from "./components/Connection";
+import { NewGame } from "./components/NewGame";
+import { CoinToss } from "./components/CoinToss";
 
 const AppRoutes = [
   {
     index: true,
     element: <Home />
-  },
-  {
-    path: '/counter',
-    element: <Counter />
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
   },
   {
     path: '/new',
