@@ -1,3 +1,5 @@
+using OnlyConnect.App.Models;
+
 namespace OnlyConnect.App.Data;
 
 public interface IConnectionsRepository

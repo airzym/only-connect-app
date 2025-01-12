@@ -1,4 +1,4 @@
-namespace OnlyConnect.App;
+namespace OnlyConnect.App.Models;
 
 public record Team(string TeamName)
 {

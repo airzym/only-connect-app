@@ -4,19 +4,10 @@ import {Hieroglyph} from "./hieroglyph/Hieroglyph";
 import {TeamName} from "./teamName/TeamName";
 
 export function Connections() {
-    const [loadingConnections, setLoadingConnections] = useState(true);
     const [loadingGame, setLoadingGame] = useState(true);
-    const [connections, setConnections] = useState(null);
     const [game, setGame] = useState(null);
 
     useEffect(() => {
-        async function fetchConnections() {
-            const response = await fetch('api/connections');
-            const data = await response.json();
-            setConnections(data);
-            setLoadingConnections(false);
-        }
-
         async function fetchGame() {
             const response = await fetch('api/game');
             const data = await response.json();
@@ -24,39 +15,34 @@ export function Connections() {
             setLoadingGame(false);
         }
 
-        if (connections === null) {
-            fetchConnections();
+        if (game === null) {
             fetchGame();
         }
     }, []);
-    
-    let getTeamsTurn = () => {
-        return game.teamOne.currentTeam ? game.teamOne.teamName : game.teamTwo.teamName;
-    }
 
     function renderHieroglyphs() {
         return (
             <div>
                 <Row>
                     <Col md={6} className="offset-3">
-                        <TeamName name={getTeamsTurn()}></TeamName>
+                        <TeamName name={game.currentTeam.teamName}></TeamName>
                     </Col>
                 </Row>
                 <Row className="my-3">
-                    <Col><Hieroglyph icon="twoReeds" disabled={connections.twoReeds.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="lion" disabled={connections.lion.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="twistedFlax" disabled={connections.twistedFlax.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="twoReeds" disabled={game.connections.twoReeds.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="lion" disabled={game.connections.lion.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="twistedFlax" disabled={game.connections.twistedFlax.selected}></Hieroglyph></Col>
                 </Row>
                 <Row className="my-3">
-                    <Col><Hieroglyph icon="hornedViper" disabled={connections.hornedViper.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="water" disabled={connections.water.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="eyeOfHorus" disabled={connections.eyeOfHorus.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="hornedViper" disabled={game.connections.hornedViper.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="water" disabled={game.connections.water.selected}></Hieroglyph></Col>
+                    <Col><Hieroglyph icon="eyeOfHorus" disabled={game.connections.eyeOfHorus.selected}></Hieroglyph></Col>
                 </Row>
             </div>
         );
     }
 
-    let contents = loadingConnections || loadingGame
+    let contents = loadingGame
         ? <p><em>Loading...</em></p>
         : renderHieroglyphs();
 

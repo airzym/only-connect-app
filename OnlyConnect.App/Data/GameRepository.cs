@@ -1,4 +1,4 @@
-using OnlyConnect.App.Controllers;
+using OnlyConnect.App.Models;
 
 namespace OnlyConnect.App.Data;
 

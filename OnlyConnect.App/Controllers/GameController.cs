@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlyConnect.App.Data;
+using OnlyConnect.App.Models;
 
 namespace OnlyConnect.App.Controllers;
 
@@ -29,49 +30,11 @@ public class GameController : ControllerBase
         _gameRepository.InsertGame(game);
     }
     
-    [HttpPost("/coinToss")]
-    public void CoinToss([FromBody] CoinToss coinToss)
+    [HttpPost("currentTeam/{teamId:Guid}")]
+    public void CoinToss([FromRoute] Guid teamId)
     {
         var game = _gameRepository.GetGame();
-        game.SetCoinToss(coinToss);
+        game.SetCurrentTeam(teamId);
         _gameRepository.SaveGame(game);
-    }
-}
-
-public class CoinToss
-{
-    public Guid WinningTeamId { get; set; }
-    public Guid StartingTeamId { get; set; }
-}
-
-public class NewGame
-{
-    public string TeamOne { get; set; }
-    public string TeamTwo { get; set; }
-}
-
-public record Game
-{
-    private CoinToss _coinToss;
-    public Team TeamOne { get; }
-    public Team TeamTwo { get; }
-
-    public Game(Team teamOne, Team teamTwo)
-    {
-        TeamOne = teamOne;
-        TeamTwo = teamTwo;
-    }
-
-    public void SetCoinToss(CoinToss coinToss)
-    {
-        _coinToss = coinToss;
-        if (coinToss.StartingTeamId == TeamOne.TeamId)
-        {
-            TeamOne.CurrentTurn = true;
-        }
-        else
-        {
-            TeamTwo.CurrentTurn = true;
-        }
     }
 }

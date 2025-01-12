@@ -42,13 +42,12 @@ export function CoinToss() {
     }
 
     async function startGame() {
-        await fetch('api/game/coinToss', {
+        await fetch('api/game/currentTeam/' + coinToss.startingTeamId, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(coinToss)
+            }
         });
         navigate("/connections");
     }
