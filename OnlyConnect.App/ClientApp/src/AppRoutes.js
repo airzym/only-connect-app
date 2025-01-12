@@ -3,6 +3,8 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Connections } from "./components/Connections";
 import {Connection} from "./components/Connection";
+import {NewGame} from "./components/NewGame";
+import {CoinToss} from "./components/CoinToss";
 
 const AppRoutes = [
   {
@@ -16,6 +18,14 @@ const AppRoutes = [
   {
     path: '/fetch-data',
     element: <FetchData />
+  },
+  {
+    path: '/new',
+    element: <NewGame />
+  },
+  {
+    path: '/coin-toss',
+    element: <CoinToss />
   },
   {
     path: '/connections',

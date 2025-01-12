@@ -1,0 +1,9 @@
+.card-team-name {
+    background-color: #0569d5;
+    box-shadow: 0 0 2em 1px rgba(0, 0, 0, 0.47) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 70px;
+}

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Breadcrumb, BreadcrumbItem, Button, Col, Row} from "reactstrap";
-import {Clue} from "./Clue";
-import {Answer} from "./Answer";
+import {Clue} from "./clue/Clue";
+import {Answer} from "./answer/Answer";
 
 export function Connection(props) {
     const [state, setState] = useState({ connection: null, loading: true, cluesGiven: null, answerRevealed: false });

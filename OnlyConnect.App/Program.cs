@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IConnectionsRepository, ConnectionsRepository>();
+builder.Services.AddSingleton<IGameRepository, GameRepository>();
 
 var app = builder.Build();
 

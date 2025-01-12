@@ -1,22 +1,47 @@
-import React, {Component} from 'react';
-import {Breadcrumb, BreadcrumbItem, Col, Row} from "reactstrap";
-import {Hieroglyph} from "./Hieroglyph";
+import React, {useEffect, useState} from 'react';
+import {Col, Row} from "reactstrap";
+import {Hieroglyph} from "./hieroglyph/Hieroglyph";
+import {TeamName} from "./teamName/TeamName";
 
-export class Connections extends Component {
-    static displayName = Connections.name;
+export function Connections() {
+    const [loadingConnections, setLoadingConnections] = useState(true);
+    const [loadingGame, setLoadingGame] = useState(true);
+    const [connections, setConnections] = useState(null);
+    const [game, setGame] = useState(null);
 
-    constructor(props) {
-        super(props);
-        this.state = { connections: null, loading: true };
+    useEffect(() => {
+        async function fetchConnections() {
+            const response = await fetch('api/connections');
+            const data = await response.json();
+            setConnections(data);
+            setLoadingConnections(false);
+        }
+
+        async function fetchGame() {
+            const response = await fetch('api/game');
+            const data = await response.json();
+            setGame(data);
+            setLoadingGame(false);
+        }
+
+        if (connections === null) {
+            fetchConnections();
+            fetchGame();
+        }
+    }, []);
+    
+    let getTeamsTurn = () => {
+        return game.teamOne.currentTeam ? game.teamOne.teamName : game.teamTwo.teamName;
     }
 
-    componentDidMount() {
-        this.populateWeatherData();
-    }
-
-    static renderForecastsTable(connections) {
+    function renderHieroglyphs() {
         return (
             <div>
+                <Row>
+                    <Col md={6} className="offset-3">
+                        <TeamName name={getTeamsTurn()}></TeamName>
+                    </Col>
+                </Row>
                 <Row className="my-3">
                     <Col><Hieroglyph icon="twoReeds" disabled={connections.twoReeds.selected}></Hieroglyph></Col>
                     <Col><Hieroglyph icon="lion" disabled={connections.lion.selected}></Hieroglyph></Col>
@@ -31,28 +56,15 @@ export class Connections extends Component {
         );
     }
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : Connections.renderForecastsTable(this.state.connections);
+    let contents = loadingConnections || loadingGame
+        ? <p><em>Loading...</em></p>
+        : renderHieroglyphs();
 
-        return (
-            <div>
-                <Breadcrumb>
-                    <BreadcrumbItem active>
-                        Connections
-                    </BreadcrumbItem>
-                </Breadcrumb>
-                <h1 id="tableLabel">Connections</h1>
-                <p>What connects all four clues?</p>
-                {contents}
-            </div>
-        );
-    }
-
-    async populateWeatherData() {
-        const response = await fetch('api/connections');
-        const data = await response.json();
-        this.setState({ connections: data, loading: false });
-    }
+    return (
+        <div>
+            <h1 id="tableLabel">Connections</h1>
+            <p>Round One: What connects all four clues?</p>
+            {contents}
+        </div>
+    );
 }
