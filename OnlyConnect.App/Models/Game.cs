@@ -7,14 +7,14 @@ public record Game
     
     public Team CurrentTeam => TeamOne.CurrentTurn ? TeamOne : TeamTwo;
     
-    public Connections Connections { get; set; } = new()
+    public IEnumerable<IConnection> Connections { get; set; } = new List<IConnection>
     {
-        EyeOfHorus = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
-        HornedViper = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
-        Lion = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
-        TwistedFlax = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
-        TwoReeds = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
-        Water = new StringConnection { Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
+        new StringConnection { Name = "eyeOfHorus", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
+        new StringConnection { Name = "hornedViper", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
+        new StringConnection { Name = "lion", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
+        new StringConnection { Name = "twistedFlax", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
+        new StringConnection { Name = "twoReeds", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", }, 
+        new StringConnection { Name = "water", Answer = "The Answer", ClueOne = "One", ClueTwo = "Two", ClueThree = "Three", ClueFour = "Four", },
     };
 
     public Game(Team teamOne, Team teamTwo)

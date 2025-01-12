@@ -37,4 +37,11 @@ public class GameController : ControllerBase
         game.SetCurrentTeam(teamId);
         _gameRepository.SaveGame(game);
     }
+    
+    [HttpGet("connections/{icon}")]
+    public IConnection? Connection([FromRoute] string icon)
+    {
+        var game = _gameRepository.GetGame();
+        return game.Connections.SingleOrDefault(c => c.Name == icon);
+    }
 }

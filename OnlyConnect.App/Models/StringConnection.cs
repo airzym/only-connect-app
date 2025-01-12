@@ -1,17 +1,19 @@
 namespace OnlyConnect.App.Models;
 
-public interface IConnection<T>
+public interface IConnection
 {
-    T ClueOne { get; }
-    T ClueTwo { get; }
-    T ClueThree { get; }
-    T ClueFour { get; }
+    string Name { get; set; }
+    string ClueOne { get; }
+    string ClueTwo { get; }
+    string ClueThree { get; }
+    string ClueFour { get; }
     string Answer { get; }
     bool Selected { get; set; }
 }
 
-public class StringConnection : IConnection<string>
+public class StringConnection : IConnection
 {
+    public required string Name { get; set; }
     public required string ClueOne { get; set; }
     public required string ClueTwo { get; set; }
     public required string ClueThree { get; set; }

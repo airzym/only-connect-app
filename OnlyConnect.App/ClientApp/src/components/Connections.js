@@ -19,6 +19,11 @@ export function Connections() {
             fetchGame();
         }
     }, []);
+    
+    function hieroglyph(icon) {
+        let disabled = game.connections.find(x => x.name === icon).selected;
+        return(<Hieroglyph icon={icon} disabled={disabled}></Hieroglyph>);
+    }
 
     function renderHieroglyphs() {
         return (
@@ -29,14 +34,14 @@ export function Connections() {
                     </Col>
                 </Row>
                 <Row className="my-3">
-                    <Col><Hieroglyph icon="twoReeds" disabled={game.connections.twoReeds.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="lion" disabled={game.connections.lion.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="twistedFlax" disabled={game.connections.twistedFlax.selected}></Hieroglyph></Col>
+                    <Col>{hieroglyph("twoReeds")}</Col>
+                    <Col>{hieroglyph("lion")}</Col>
+                    <Col>{hieroglyph("twistedFlax")}</Col>
                 </Row>
                 <Row className="my-3">
-                    <Col><Hieroglyph icon="hornedViper" disabled={game.connections.hornedViper.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="water" disabled={game.connections.water.selected}></Hieroglyph></Col>
-                    <Col><Hieroglyph icon="eyeOfHorus" disabled={game.connections.eyeOfHorus.selected}></Hieroglyph></Col>
+                    <Col>{hieroglyph("hornedViper")}</Col>
+                    <Col>{hieroglyph("water")}</Col>
+                    <Col>{hieroglyph("eyeOfHorus")}</Col>
                 </Row>
             </div>
         );

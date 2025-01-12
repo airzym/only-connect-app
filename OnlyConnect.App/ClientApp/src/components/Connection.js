@@ -8,7 +8,7 @@ export function Connection(props) {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(`api/connections/${props.icon}`);
+            const response = await fetch(`api/game/connections/${props.icon}`);
             const data = await response.json();
             setState({connection: data, loading: false, cluesGiven: 0, answerRevealed: false});
         }
