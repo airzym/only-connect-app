@@ -8,10 +8,20 @@ public interface IConnection
     string ClueThree { get; }
     string ClueFour { get; }
     string Answer { get; }
-    bool Selected { get; set; }
+    public Winner? Winner { get; set; }
+    public void SetWinner(Winner winner)
+    {
+        Winner = winner;
+    }
 }
 
-public class StringConnection : IConnection
+public record Winner
+{
+    public Guid? WinningTeamId { get; set; }
+    public int PointsWon { get; set; }
+}
+
+public record StringConnection : IConnection
 {
     public required string Name { get; set; }
     public required string ClueOne { get; set; }
@@ -19,5 +29,6 @@ public class StringConnection : IConnection
     public required string ClueThree { get; set; }
     public required string ClueFour { get; set; }
     public required string Answer { get; set; }
-    public bool Selected { get; set; } = false;
+    public Winner? Winner { get; set; }
+    
 }

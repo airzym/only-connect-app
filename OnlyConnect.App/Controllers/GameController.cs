@@ -27,7 +27,14 @@ public class GameController : ControllerBase
         var one = new Team(newGame.TeamOne);
         var two = new Team(newGame.TeamTwo);
         var game = new Game(one, two);
-        _gameRepository.InsertGame(game);
+        _gameRepository.SaveGame(game);
+    }
+    
+    [HttpPut]
+    public Game Put([FromBody] Game game)
+    {
+        _gameRepository.SaveGame(game);
+        return _gameRepository.GetGame();
     }
     
     [HttpPost("currentTeam/{teamId:Guid}")]
@@ -44,4 +51,21 @@ public class GameController : ControllerBase
         var game = _gameRepository.GetGame();
         return game.Connections.SingleOrDefault(c => c.Name == icon);
     }
+    
+    [HttpPut("connections/{icon}/winner")]
+    public Winner Connection([FromRoute] string icon, [FromBody] Winner winner)
+    {
+        var game = _gameRepository.GetGame();
+        foreach (var connection in game.Connections)
+        {
+            if (connection.Name == icon)
+            {
+                connection.SetWinner(winner);
+            }
+        }
+        _gameRepository.SaveGame(game);
+        return winner;
+    }
+    
+    
 }

@@ -21,7 +21,7 @@ export function Connections() {
     }, []);
     
     function hieroglyph(icon) {
-        let disabled = game.connections.find(x => x.name === icon).selected;
+        let disabled = game.connections.find(x => x.name === icon).winner != null;
         return(<Hieroglyph icon={icon} disabled={disabled}></Hieroglyph>);
     }
 
@@ -54,7 +54,7 @@ export function Connections() {
     return (
         <div>
             <h1 id="tableLabel">Connections</h1>
-            <p>Round One: What connects all four clues?</p>
+            <p>Select a hieroglyph?</p>
             {contents}
         </div>
     );

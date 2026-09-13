@@ -6,6 +6,7 @@ public record Game
     public Team TeamTwo { get; }
     
     public Team CurrentTeam => TeamOne.CurrentTurn ? TeamOne : TeamTwo;
+    public Team OpposingTeam => TeamOne.CurrentTurn ? TeamTwo : TeamOne;
     
     public IEnumerable<IConnection> Connections { get; set; } = new List<IConnection>
     {
